@@ -817,12 +817,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h4>Earn money by playing our amazing games🎮🎯🕹</h4>
                 <p class="subtitle">Our Games</p>
 					<div class="text-1">
-						<a><h5>Tetris</h5></a>
+						<a href='games/tetris.html'><h5>Tetris</h5></a>
 						<p>A fun block game with amazing GUI</p>
 					</div>
 					<div class="text-1">
-						<a><h5>Ping Pong</h5></a>
-						<p>A virtual Table Tennis game</p>
+						<a href='games/pong.html'><h5>Pong</h5></a>
+						<p>The classic single player game</p>
+                    </div>
+                    <div class="text-1">
+						<a href='games/2pong.html'><h5>Multiplayer Pong</h5></a>
+						<p>The advanced two player game</p>
 					</div>
 					<div class="text-1">
 						<h5>More games coming soon....</h5>
@@ -846,7 +850,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!--//phone-->
 
-	
+<script>
+    function getJoke() {
+        const jokeText = document.getElementById('jokep');
+        const newJokeBtn = document.querySelector('.new-joke-btn');
+        const tweetBtn = document.querySelector('.tweet-btn');
+  fetch('https://icanhazdadjoke.com/', {
+    headers: {  
+      'Accept': 'application/json'
+    }
+  }).then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    const joke = data.joke;
+    jokeText.innerText = joke;
+    const tweetLink = `https://twitter.com/share?text=${joke}`;
+    tweetBtn.setAttribute('href', tweetLink);
+  }).catch(function(error) {
+    jokeText.innerText = 'Oops! Some error happened :(';
+    tweetBtn.removeAttribute('href');
+    console.log(error);
+  });
+    }
+</script>
 <!-- Support content -->
 	<div class="w3l-support">
 		<div class="container">
@@ -856,16 +882,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-7 w3_agile_support_right">
 				<h5>Don't be so Serious</h5>
 				<h3>Let's have some laughs with our Jokes Generator😂🤣</h3>
-				<p>DISPLAY JOKE HERE</p>
+				<p id='jokep'>DISPLAY JOKE HERE</p>
 				<div class="agile_more">
-					<a href="support.html" class="type-4">
-						<span> Next Joke </span>
-						<span> Next Joke  </span>
-						<span> Next Joke  </span>
-						<span> Next Joke  </span>	
-						<span> Next Joke  </span>
-						<span> Next Joke  </span>
-					</a>
+					<button onclick=getJoke() style="display:block; background:turquoise; color: azure; border: none;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;margin: 4px 2px;cursor: pointer;border-radius: 16px;">New Joke</button>
+                    <a href="" class="btn tweet-btn" target="_blank" rel="noopener noreferrer" style="color: turquoise;">Tweet!!</a>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
